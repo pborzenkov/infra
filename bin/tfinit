@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+terraform init -backend-config="conn_str=postgres://terraform:$(pass show misc/terraform-pg)@rock.lan/tf_infra?sslmode=disable"
