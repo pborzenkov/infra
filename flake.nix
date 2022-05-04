@@ -20,7 +20,10 @@
           pkgs.nixpkgs-fmt
 
           (pkgs.terraform.withPlugins
-          (p: [ p.namecheap ]))
+            (plugin: with plugin; [
+              namecheap
+              vultr
+            ]))
           pkgs.terraform-ls
         ];
       };

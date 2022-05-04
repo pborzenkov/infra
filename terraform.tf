@@ -8,6 +8,10 @@ terraform {
       source  = "namecheap/namecheap"
       version = "~> 2.1"
     }
+    vultr = {
+      source  = "vultr/vultr"
+      version = "~>2.10"
+    }
   }
 }
 

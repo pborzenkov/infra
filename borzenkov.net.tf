@@ -7,7 +7,7 @@ resource "namecheap_domain_records" "borzenkov_net" {
   record {
     hostname = "@"
     type     = "A"
-    address  = "45.32.237.74"
+    address  = vultr_instance.gw.main_ip
   }
 
   // Email
