@@ -1,7 +1,6 @@
-resource "namecheap_domain_records" "borzenkov_net" {
-  domain     = "borzenkov.net"
-  mode       = "OVERWRITE"
-  email_type = "MX"
+resource "namecheap_domain_records" "borzenkov_net_main" {
+  domain = "borzenkov.net"
+  mode   = "MERGE"
 
   // Address of the VPS
   record {
@@ -9,6 +8,29 @@ resource "namecheap_domain_records" "borzenkov_net" {
     type     = "A"
     address  = vultr_instance.gw.main_ip
   }
+}
+
+resource "namecheap_domain_records" "borzenkov_net_services" {
+  domain = "borzenkov.net"
+  mode   = "MERGE"
+
+  // Publicly available services from the lab
+  record {
+    hostname = "photos"
+    type     = "CNAME"
+    address  = "borzenkov.net."
+  }
+  record {
+    hostname = "wallabag"
+    type     = "CNAME"
+    address  = "borzenkov.net."
+  }
+}
+
+resource "namecheap_domain_records" "borzenkov_net_mail" {
+  domain     = "borzenkov.net"
+  mode       = "MERGE"
+  email_type = "MX"
 
   // Email
   record {
@@ -42,17 +64,5 @@ resource "namecheap_domain_records" "borzenkov_net" {
     hostname = "@"
     type     = "TXT"
     address  = "v=spf1 include:spf.messagingengine.com ?all"
-  }
-
-  // Publicly available services from the lab
-  record {
-    hostname = "photos"
-    type     = "CNAME"
-    address  = "borzenkov.net."
-  }
-  record {
-    hostname = "wallabag"
-    type     = "CNAME"
-    address  = "borzenkov.net."
   }
 }

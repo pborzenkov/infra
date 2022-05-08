@@ -24,7 +24,6 @@
               namecheap
               vultr
             ]))
-          pkgs.terraform-ls
         ];
       };
     });
